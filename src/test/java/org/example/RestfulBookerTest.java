@@ -157,6 +157,8 @@ public class RestfulBookerTest extends BaseSetup {
             }
         }
 
+        //testing
+
         assertEquals(message, "Booking ID does not exist");
     }
 
