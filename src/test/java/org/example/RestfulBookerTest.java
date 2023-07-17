@@ -38,6 +38,8 @@ public class RestfulBookerTest extends BaseSetup {
                         "booking.bookingdates.checkout", equalTo(NEW_BOOKING_DATA.getBookingdates().getCheckout()),
                         "bookingid", is(notNullValue()))
                 .extract().jsonPath().get("bookingid");
+
+        System.out.println(bookingId);
     }
 
     @Test
