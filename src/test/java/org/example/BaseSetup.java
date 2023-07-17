@@ -22,6 +22,7 @@ public class BaseSetup {
                 .addFilter(new RequestLoggingFilter())
                 .addFilter(new ResponseLoggingFilter())
                 .build();
+        //testing
 
         ResponseSpecification responseSpecification = new ResponseSpecBuilder()
                 .expectResponseTime(lessThan(20000L))
