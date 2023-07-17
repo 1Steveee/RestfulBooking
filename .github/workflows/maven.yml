@@ -29,7 +29,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '11'
-          distribution: 'adopt'
+          distribution: 'oracle'
           cache: maven
       - name: Build with Maven
         run: mvn clean install -Dusername="admin" -Dpassword="password123"
