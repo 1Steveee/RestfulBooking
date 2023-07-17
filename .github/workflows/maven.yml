@@ -16,12 +16,9 @@ on:
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
-    #    services:
-    #      restful-booker:
-    #        image: mwinteringham/restfulbooker
-    #        ports:
-    #          - 3001:3001
+
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 11
@@ -30,12 +27,12 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
           cache: maven
-      #      - name: Start restful booker service
-      #        run: docker-compose -f ${{ github.workspace }}/docker-compose-restfulbooker.yml up -d
+      - name: Start restful booker service
+        run: docker-compose -f ${{ github.workspace }}/docker-compose-restfulbooker.yml up --build --abort-on-container-exit --exit-code-from app
 
       - name: Build with Maven and run tests
         run: mvn clean install
-#
-#      - name: Stop restful booker service
-#        run: docker-compose -f ${{ github.workspace }}/docker-compose-restfulbooker.yml down --remove-orphans
+
+      - name: Stop restful booker service
+        run: docker-compose -f ${{ github.workspace }}/docker-compose-restfulbooker.yml down --remove-orphans --rmi=all
 
