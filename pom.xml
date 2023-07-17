@@ -92,7 +92,6 @@
                             <suiteXmlFile>restfulbooker-testng.xml</suiteXmlFile>
                         </suiteXmlFiles>
                         <argLine>-Dfile.encoding=UTF-8 -Xdebug -Xnoagent</argLine>
-                        <reportsDirectory>surefire-reports</reportsDirectory>
                     </configuration>
                 </plugin>
             </plugins>
