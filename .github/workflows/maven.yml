@@ -30,6 +30,16 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
           cache: maven
+
       - name: Build with Maven and run tests
         run: mvn clean install -Dusername="admin" -Dpassword="password123"
+
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Test Results
+          path: ${{ github.workspace }}/target/surefire-reports/Test-testng.xml
+          reporter: java-junit
+
 
