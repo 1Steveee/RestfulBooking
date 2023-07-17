@@ -1,12 +1,14 @@
 package org.example;
 
 import data.BookingData;
+import data.PartialBookingData;
 import data.TokenCreds;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.testng.annotations.Test;
 
 import static data.CreateBookingDataBuilder.createBookingData;
+import static data.CreateBookingDataBuilder.createPartialBookingData;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 import static org.testng.AssertJUnit.assertEquals;
@@ -40,24 +42,24 @@ public class RestfulBookerTest extends BaseSetup {
         System.out.println(bookingId);
     }
 
-//    @Test
-//    public void testGetCreatedBooking() {
-//        given()
-//                .when()
-////                .pathParam("id", bookingId)
-//                .get(BOOKING_ENDPOINT + "/" + bookingId)
-//                .then()
-//                .statusCode(OK_HTTP_RESPONSE)
-//                .statusLine("HTTP/1.1 200 OK")
-//                .header("Content-Type", "application/json; charset=utf-8")
-//                .body("firstname", equalTo(NEW_BOOKING_DATA.getFirstname()),
-//                        "lastname", equalTo(NEW_BOOKING_DATA.getLastname()),
-//                        "totalprice", equalTo(NEW_BOOKING_DATA.getTotalprice()),
-//                        "depositpaid", equalTo(NEW_BOOKING_DATA.isDepositpaid()),
-//                        "additionalneeds", equalTo(NEW_BOOKING_DATA.getAdditionalneeds()),
-//                        "bookingdates.checkin", equalTo(NEW_BOOKING_DATA.getBookingdates().getCheckin()),
-//                        "bookingdates.checkout", equalTo(NEW_BOOKING_DATA.getBookingdates().getCheckout()));
-//    }
+    @Test
+    public void testGetCreatedBooking() {
+        given()
+                .when()
+//                .pathParam("id", bookingId)
+                .get(BOOKING_ENDPOINT + "/" + bookingId)
+                .then()
+                .statusCode(OK_HTTP_RESPONSE)
+                .statusLine("HTTP/1.1 200 OK")
+                .header("Content-Type", "application/json; charset=utf-8")
+                .body("firstname", equalTo(NEW_BOOKING_DATA.getFirstname()),
+                        "lastname", equalTo(NEW_BOOKING_DATA.getLastname()),
+                        "totalprice", equalTo(NEW_BOOKING_DATA.getTotalprice()),
+                        "depositpaid", equalTo(NEW_BOOKING_DATA.isDepositpaid()),
+                        "additionalneeds", equalTo(NEW_BOOKING_DATA.getAdditionalneeds()),
+                        "bookingdates.checkin", equalTo(NEW_BOOKING_DATA.getBookingdates().getCheckin()),
+                        "bookingdates.checkout", equalTo(NEW_BOOKING_DATA.getBookingdates().getCheckout()));
+    }
 
     @Test
     public void testCreateAuthToken() {
@@ -73,43 +75,43 @@ public class RestfulBookerTest extends BaseSetup {
                 .extract().jsonPath().get("token");
     }
 
-//    @Test
-//    public void testUpdateExistingBooking() {
-//        BookingData updateBookingData = createBookingData();
-//
-//        given()
-//                .header("Cookie", "token=" + authToken)
-//                .body(updateBookingData)
-//                .when()
-////                .pathParam("id", bookingId)
-//                .put(BOOKING_ENDPOINT + "/" + bookingId)
-//                .then()
-//                .statusCode(OK_HTTP_RESPONSE)
-//                .header("Content-Type", "application/json; charset=utf-8")
-//                .body("firstname", equalTo(updateBookingData.getFirstname()),
-//                        "lastname", equalTo(updateBookingData.getLastname()),
-//                        "totalprice", equalTo(updateBookingData.getTotalprice()),
-//                        "depositpaid", equalTo(updateBookingData.isDepositpaid()),
-//                        "additionalneeds", equalTo(updateBookingData.getAdditionalneeds()),
-//                        "bookingdates.checkin", equalTo(updateBookingData.getBookingdates().getCheckin()),
-//                        "bookingdates.checkout", equalTo(updateBookingData.getBookingdates().getCheckout()));
-//    }
+    @Test
+    public void testUpdateExistingBooking() {
+        BookingData updateBookingData = createBookingData();
 
-//    @Test
-//    public void testUpdatePartialBookingData() {
-//        PartialBookingData partialBookingData = createPartialBookingData();
-//        given()
-//                .header("Cookie", "token=" + authToken)
-//                .body(partialBookingData)
-//                .when()
-////                .pathParam("id", bookingId)
-//                .patch(BOOKING_ENDPOINT + "/" + bookingId)
-//                .then()
-//                .statusCode(OK_HTTP_RESPONSE)
-//                .header("Content-Type", "application/json; charset=utf-8")
-//                .body("firstname", equalTo(partialBookingData.getFirstname()),
-//                        "lastname", equalTo(partialBookingData.getLastname()));
-//    }
+        given()
+                .header("Cookie", "token=" + authToken)
+                .body(updateBookingData)
+                .when()
+//                .pathParam("id", bookingId)
+                .put(BOOKING_ENDPOINT + "/" + bookingId)
+                .then()
+                .statusCode(OK_HTTP_RESPONSE)
+                .header("Content-Type", "application/json; charset=utf-8")
+                .body("firstname", equalTo(updateBookingData.getFirstname()),
+                        "lastname", equalTo(updateBookingData.getLastname()),
+                        "totalprice", equalTo(updateBookingData.getTotalprice()),
+                        "depositpaid", equalTo(updateBookingData.isDepositpaid()),
+                        "additionalneeds", equalTo(updateBookingData.getAdditionalneeds()),
+                        "bookingdates.checkin", equalTo(updateBookingData.getBookingdates().getCheckin()),
+                        "bookingdates.checkout", equalTo(updateBookingData.getBookingdates().getCheckout()));
+    }
+
+    @Test
+    public void testUpdatePartialBookingData() {
+        PartialBookingData partialBookingData = createPartialBookingData();
+        given()
+                .header("Cookie", "token=" + authToken)
+                .body(partialBookingData)
+                .when()
+//                .pathParam("id", bookingId)
+                .patch(BOOKING_ENDPOINT + "/" + bookingId)
+                .then()
+                .statusCode(OK_HTTP_RESPONSE)
+                .header("Content-Type", "application/json; charset=utf-8")
+                .body("firstname", equalTo(partialBookingData.getFirstname()),
+                        "lastname", equalTo(partialBookingData.getLastname()));
+    }
 
     @Test
     public void testDeleteBooking() {
