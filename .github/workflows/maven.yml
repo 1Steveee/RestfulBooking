@@ -17,11 +17,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    services:
-      restful-booker:
-        image: mwinteringham/restfulbooker
-        ports:
-          - 3001:3001
+    #    services:
+    #      restful-booker:
+    #        image: mwinteringham/restfulbooker
+    #        ports:
+    #          - 3001:3001
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 11
