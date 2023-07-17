@@ -39,7 +39,7 @@ jobs:
         if: always()
         with:
           name: Test Results
-          path: ${{ github.workspace }}/target/surefire-reports/TEST-*.xml
+          path: ${{ github.workspace }}/target/surefire-reports/TEST-RestfulBookerTest.xml
           reporter: java-junit
 
 
