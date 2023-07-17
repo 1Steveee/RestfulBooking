@@ -28,7 +28,7 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Start restful booker service
-        run: docker-compose -f ${{ github.workspace }}/docker-compose-restfulbooker.yml up --build --abort-on-container-exit --exit-code-from app
+        run: docker-compose -f ${{ github.workspace }}/docker-compose-restfulbooker.yml up -d
 
       - name: Build with Maven and run tests
         run: mvn clean install
