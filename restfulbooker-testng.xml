@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Restful Booker">
+    <test name="Restful Booker tests">
+        <classes>
+            <class name="org.example.RestfulBookerTest">
+                <methods>
+                    <include name="testCreateNewBooking"/>
+                    <include name="testGetCreatedBooking"/>
+                    <include name="testCreateAuthToken"/>
+                    <include name="testUpdateExistingBooking"/>
+                    <include name="testUpdatePartialBookingData"/>
+                    <include name="testDeleteBooking"/>
+                    <include name="testGetDeletedBookingId"/>
+                    <include name="testGetAllBookingIDs"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite> <!-- Suite -->
