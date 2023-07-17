@@ -39,7 +39,7 @@ jobs:
         if: always()
         with:
           name: Test Results
-          path: RestfulBooking/target/surefire-reports/TEST-org.example.RestfulBookerTest.xml
+          path: /RestfulBooking/target/surefire-reports/TEST-org.example.RestfulBookerTest.xml
           reporter: java-junit
 
 
