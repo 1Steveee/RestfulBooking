@@ -89,7 +89,7 @@
                     </executions>
                     <configuration>
                         <suiteXmlFiles>
-                            <suiteXmlFile>restfulbooker-testng.xml</suiteXmlFile>
+                            <suiteXmlFile>TEST-org.example.RestfulBookerTest</suiteXmlFile>
                         </suiteXmlFiles>
                         <argLine>-Dfile.encoding=UTF-8 -Xdebug -Xnoagent</argLine>
                     </configuration>
