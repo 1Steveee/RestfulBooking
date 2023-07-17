@@ -31,6 +31,12 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
           cache: maven
-      - name: Build with Maven
+      - name: Start restful booker service
+        run: docker-compose -f ${{ github.workspace }}/docker-compose-restfulbooker.yml up -d
+
+      - name: Build with Maven and run tests
         run: mvn clean install
+
+      - name: Stop restful booker service
+        run: docker-compose -f ${{ github.workspace }}/docker-compose-restfulbooker.yml down --remove-orphans
 
