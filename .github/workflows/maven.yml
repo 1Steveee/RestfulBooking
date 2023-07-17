@@ -31,5 +31,5 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Build with Maven and run tests
-        run: mvn clean install -ea -Dusername="admin" -Dpassword="password123"
+        run: mvn clean install -Dusername="admin" -Dpassword="password123"
 
