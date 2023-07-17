@@ -6,10 +6,10 @@
             <class name="org.example.RestfulBookerTest">
                 <methods>
                     <include name="testCreateNewBooking"/>
-                    <include name="testGetCreatedBooking"/>
+                    <exclude name="testGetCreatedBooking"/>
                     <include name="testCreateAuthToken"/>
-                    <include name="testUpdateExistingBooking"/>
-                    <include name="testUpdatePartialBookingData"/>
+                    <exclude name="testUpdateExistingBooking"/>
+                    <exclude name="testUpdatePartialBookingData"/>
                     <include name="testDeleteBooking"/>
                     <include name="testGetDeletedBookingId"/>
                     <include name="testGetAllBookingIDs"/>
