@@ -34,7 +34,10 @@ jobs:
           cache: maven
 
       - name: Build with Maven and run tests
-        run: mvn clean install -Dusername="admin" -Dpassword="password123"
+        env:
+          USERNAME: ${{ secrets.USERNAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+        run: mvn clean install -Dusername=$username -Dpassword=$admin
 
       - name: Test Report
         uses: dorny/test-reporter@v1
