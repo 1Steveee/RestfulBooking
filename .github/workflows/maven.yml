@@ -35,8 +35,8 @@ jobs:
 
       - name: Build with Maven and run tests
         env:
-          USERNAME: ${{ secrets.USERNAME }}
-          PASSWORD: ${{ secrets.PASSWORD }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
         run: mvn clean install -Dusername=$username -Dpassword=$admin
 
       - name: Test Report
