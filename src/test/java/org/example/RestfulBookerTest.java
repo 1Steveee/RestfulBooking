@@ -147,17 +147,18 @@ public class RestfulBookerTest extends BaseSetup {
         JSONArray jsonArray = new JSONArray(responseBody);
         JSONObject objectID = jsonArray.getJSONObject(0);
         int bookingID = objectID.getInt(bookingid);
-        System.out.println(bookingID);
 
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject object = jsonArray.getJSONObject(i);
 
-            if (object.get(bookingid) == bookingid) {
+            if (object.getInt(bookingid) == bookingId) {
+
                 message = "Booking ID exist in the system";
             } else {
                 message = "Booking ID does not exist";
             }
         }
+
 
         assertEquals(message, "Booking ID does not exist");
     }
