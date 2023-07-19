@@ -5,13 +5,13 @@ import data.PartialBookingData;
 import data.TokenCreds;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static data.CreateBookingDataBuilder.createBookingData;
 import static data.CreateBookingDataBuilder.createPartialBookingData;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
-import static org.testng.AssertJUnit.assertEquals;
 
 public class RestfulBookerTest extends BaseSetup {
     private final BookingData NEW_BOOKING_DATA = createBookingData();
@@ -43,7 +43,7 @@ public class RestfulBookerTest extends BaseSetup {
     }
 
     @Test
-    public void testGetCreatedBooking() {
+    public void testGetBooking() {
         given()
                 .when()
 //                .pathParam("id", bookingId)
@@ -137,7 +137,7 @@ public class RestfulBookerTest extends BaseSetup {
     @Test
     public void testGetAllBookingIDs() {
         String bookingid = "bookingid";
-        String message = "";
+
 
         String responseBody = given()
                 .when()
@@ -145,22 +145,15 @@ public class RestfulBookerTest extends BaseSetup {
                 .getBody().asString();
 
         JSONArray jsonArray = new JSONArray(responseBody);
-        JSONObject objectID = jsonArray.getJSONObject(0);
-        int bookingID = objectID.getInt(bookingid);
 
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject object = jsonArray.getJSONObject(i);
 
             if (object.getInt(bookingid) == bookingId) {
-
-                message = "Booking ID exist in the system";
-            } else {
-                message = "Booking ID does not exist";
+                System.out.println(object.getInt(bookingid));
+                Assert.fail("Booking ID exist in the system");
             }
         }
-
-
-        assertEquals(message, "Booking ID does not exist");
     }
 
 }
