@@ -1,0 +1,46 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pr:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+jobs:
+- job: BuildAndTest
+  displayName: 'Java CI with Maven'
+  steps:
+  - checkout: self
+
+  - task: UseJavaVersion@1
+    inputs:
+      versionSpec: '11'
+      jdkArchitecture: 'x64'
+
+  - task: Cache@2
+    inputs:
+      key: 'maven | "v1" | **/pom.xml'
+      restoreKeys: |
+        maven | "v1" | **/pom.xml
+      path: $(Agent.HomeDirectory)/.m2
+      cacheHitVar: MAVEN_RESTORED
+
+  - script: mvn clean install -Dusername=$(USERNAME) -Dpassword=$(PASSWORD)
+    displayName: 'Build with Maven and run tests'
+    env:
+      USERNAME: $(username) # Define these as variables in your Azure DevOps pipeline settings
+      PASSWORD: $(password)
+
+  - task: PublishTestResults@2
+    displayName: 'Publish Test Results'
+    condition: eq(variables['MAVEN_RESTORED'], 'false')
+    inputs:
+      testResultsFiles: '$(System.DefaultWorkingDirectory)/target/surefire-reports/TEST-*.xml'
+      testRunTitle: 'Test Results'
+      mergeTestResults: true
+      testRunSystem: 'VSTest'
